@@ -1,0 +1,13 @@
+module.exports={
+    devServer:{
+        proxy:{
+            '/api':{
+                target:"http://192.168.43.146:8080",
+                changeOrigin:true,
+                pathRewrite:{
+                    '/api':''
+                }
+            }
+        }
+    }
+}

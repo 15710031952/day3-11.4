@@ -11,19 +11,30 @@
         <div class="center">
             <p><input type="text" placeholder="用户名"></p>
             <p><input type="password" placeholder="密码"></p>
-            <p><button>注册</button></p>
+            <p><button @click="register">注册</button></p>
         </div>
     </div>
 </template>
 
 <script>
+import {register} from '../../servier/index'
 export default {
     name:'register',
   data () {
     return {
-
+        username:'',
+        pawd:''
     };
   },
+  methods:{
+      async register(){
+          let {username,pawd} =this;
+          let result= await register({username,pawd});
+          console.log(result);
+          
+        //   ig(result&&result){}
+      }
+  }
 }
 
 </script>

@@ -5,9 +5,9 @@
             圈子登录
         </div>
         <div class="center">
-            <p><input type="text" placeholder="用户名"></p>
-            <p><input type="password" placeholder="登录密码"></p>
-            <p><button>登录</button></p>
+            <p><input type="text" placeholder="用户名" v-model="username"></p>
+            <p><input type="password" placeholder="登录密码" v-model="pawd"></p>
+            <p><button @click="login">登录</button></p>
             <p class="link">
                 <router-link to="/register" tog='span'>没有账号, 快速注册</router-link>
             </p>
@@ -16,13 +16,23 @@
 </template>
 
 <script>
+import {login} from '../../servier/index'
 export default {
     name:'#login',
   data () {
     return {
-
+        username:'',
+        pawd:''
     };
   },
+  methods:{
+      async login(){
+          let {username,pawd} = this;
+          let result = await login({username,pawd});
+          console.log(result);
+          
+      }
+  }
 }
 
 </script>
