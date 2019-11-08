@@ -75,4 +75,26 @@ const router = new VueRouter({
   routes
 })
 
+
+//导航守卫
+const whiteList=['/login','/register']
+router.beforeEach((to,from,next)=>{
+  let isLogin=window.sessionStorage.getItem('isLogin');
+
+  if(!isLogin){
+    if(whiteList.indexOf(to.path)===-1){
+      next('/login')
+    }else{
+      next()
+    }
+  }else{
+    next()
+  }
+})
+
+// router.afterEach((to,from)=>{
+
+// })
+
+
 export default router

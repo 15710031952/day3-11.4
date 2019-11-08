@@ -18,7 +18,7 @@
 <script>
 import {login} from '../../servier/index'
 export default {
-    name:'#login',
+    name:'login',
   data () {
     return {
         username:'',
@@ -29,8 +29,17 @@ export default {
       async login(){
           let {username,pawd} = this;
           let result = await login({username,pawd});
-          console.log(result);
-          
+        //   console.log(result);
+        if(result&&result.data.code === 1){
+            window.sessionStorage.setItem('islogin','true')
+            this.$router.replace('/')
+        }
+       // this.$toast(result.data.msg)
+      },
+      checkUserName(){
+          if(!/\w{3,20}/.test(this.userName)){
+              this.$toast('请输入正确的用户名')
+          }
       }
   }
 }

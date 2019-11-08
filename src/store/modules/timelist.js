@@ -11,7 +11,7 @@ const mutations={
 }
 
 const actions={
-    async getTimeline(context,payload){
+    async getTimeline(context){
         let data=await showDynamic();
         context.commit('updateList',data.data.data);
     }

@@ -30,9 +30,13 @@ export default {
       async register(){
           let {username,pawd} =this;
           let result= await register({username,pawd});
-          console.log(result);
-          
-        //   ig(result&&result){}
+        //   console.log(result);
+
+            if(result&&result.data.code===0){
+                alert(result.data.msg)
+            }else{
+                window.history.back()
+            }
       }
   }
 }

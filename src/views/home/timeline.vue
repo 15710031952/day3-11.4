@@ -23,7 +23,7 @@
                 <span>{{`评论${item.comments.length}`}}</span>
               </p>
             </div>
-            <Reply />
+            <Reply :reply='item.comments'/>
           </li>
         </div>
         <ReplyModule />
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {mapState,mapActions} from 'vuex'
+import {mapState,mapActions,mapMutations} from 'vuex'
 import Reply from '@/components/reply.vue'
 import ReplyModule from '@/components/replyModule.vue'
 
@@ -50,12 +50,28 @@ export default {
   computed:{
     ...mapState({
       list:state=>state.timeline.list
-    })
+    }),
+    
   },
   methods:{
     ...mapActions({
       getTimeline:'timeline/getTimeline'
-    })
+    }),
+    ...mapMutations({
+      showModal:'replyModal/showModal'
+    }),
+    reply(value){
+      this.replyInfo={
+        type:'comment',
+        dynamicid:value.dynamicid,
+        content:'',
+        title:`评论:${value.userName}`
+      },
+      this.showModal({
+        info:this.replyInfo,
+        show:true
+      })
+    }
   },
   created(){
     this.getTimeline()
