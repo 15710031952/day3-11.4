@@ -4,11 +4,15 @@ import { connect } from 'dva';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 import MyMenu from '@/components/MyMenu'
 
+import RouterView from '@/router/RouterView'
+
 const { Header, Content, Sider }=Layout
 
 class IndexPage extends React.Component{
   render(){
-    let {changeNum}=this.props
+    // console.log("this.props",this.props.routes);
+    
+    //let {changeNum}=this.props
     return(
       <Layout>
         <Header className='header'>
@@ -33,7 +37,7 @@ class IndexPage extends React.Component{
                   minHeight:280
                 }}
              >
-               Content
+              <RouterView routes={this.props.routes} />
              </Content>
           </Layout>
 
@@ -51,26 +55,28 @@ class IndexPage extends React.Component{
   }
 }
 
-IndexPage.propTypes={
-  num:Number
-}
-IndexPage.defaultProps={
-  num:1000
-}
-const mapStateToProps=state=>{
-  console.log(state.num.num);
+// IndexPage.propTypes={
+//   num:Number
+// }
+// IndexPage.defaultProps={
+//   num:1000
+// }
+// const mapStateToProps=state=>{
+//   console.log(state.num.num);
   
-  return{
-    num:state.num.num
-  }
-}
-const mapDispatchToProps=dispatch=>{
-  return{
-    changeNum:type=>dispatch({
-      type:'num/changeNum',
-      payload:{type}
-    })
-  }
-}
+//   return{
+//     num:state.num.num
+//   }
+// }
+// const mapDispatchToProps=dispatch=>{
+//   return{
+//     changeNum:type=>dispatch({
+//       type:'num/changeNum',
+//       payload:{type}
+//     })
+//   }
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(IndexPage);
+// export default connect(mapStateToProps,mapDispatchToProps)(IndexPage);
+export default connect()(IndexPage);
+
