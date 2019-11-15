@@ -18,7 +18,7 @@ export default {
     },
     {
       path: '/main/addGov',
-      component: ()=><p>新增机构页面</p>,
+      component: NewGov,
     },{
       path: '/main/editGov/:id?',
       component: ()=><p>编辑机构</p>,
